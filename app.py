@@ -13,13 +13,19 @@ user_input = st.text_area("✍️ Review Text")
 model = joblib.load("naive_bayes_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
+# Define label mapping (from LabelEncoder logic)
+label_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
+
 # Prediction logic
 if st.button("🔍 Predict Sentiment"):
     if user_input.strip() == "":
         st.warning("Please enter a review to analyze.")
     else:
         transformed_input = vectorizer.transform([user_input])
-        prediction = model.predict(transformed_input)[0]  # 'Positive', 'Neutral', or 'Negative'
+        prediction = model.predict(transformed_input)[0]  # This will be 0, 1, or 2
 
-        # Show result
-        st.success(f"🎯 Predicted Sentiment: **{prediction}**")
+        # Convert numeric label to text
+        sentiment = label_map.get(prediction, "Unknown")
+
+        st.success(f"🎯 Predicted Sentiment: **{sentiment}**")
+
