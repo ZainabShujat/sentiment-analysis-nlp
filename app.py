@@ -12,8 +12,9 @@ st.set_page_config(
 # --- BANNER IMAGE ---
 st.image(
     "https://cdn.pixabay.com/photo/2016/11/29/10/07/online-shopping-1863783_1280.jpg",
-    use_container_width="auto"
+    use_container_width=True
 )
+
 
 # --- HEADER ---
 st.title("🛒 Amazon Product Review Sentiment Analyzer")
