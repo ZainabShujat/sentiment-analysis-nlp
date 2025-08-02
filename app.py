@@ -1,51 +1,56 @@
 import streamlit as st
 import pandas as pd
 import joblib
-from PIL import Image
 
-# Load trained model & vectorizer
+# --- PAGE CONFIG ---
+st.set_page_config(
+    page_title="Customer Sentiment Analyzer",
+    page_icon="🛍️",
+    layout="centered",
+)
+
+# --- BANNER IMAGE ---
+st.image(
+    "https://cdn.pixabay.com/photo/2016/11/29/10/07/online-shopping-1863783_1280.jpg",
+    use_column_width="auto"
+)
+
+# --- HEADER ---
+st.title("🛒 Amazon Product Review Analyzer")
+st.markdown("""
+Welcome to the **Sentiment Analysis App**!  
+This tool helps you understand how customers feel about a product based on their review.  
+Enter any review below — it could be glowing, angry, or just *meh* — and we’ll tell you what it sounds like.  
+""")
+
+# --- INPUT BOX ---
+st.subheader("📋 Write or paste a customer review:")
+user_input = st.text_area("✍️ Review Text", height=150, placeholder="e.g. The fabric was soft and the fit was perfect!")
+
+# --- LOAD MODEL + VECTORIZER ---
 model = joblib.load("naive_bayes_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
-# Label mapping
 label_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
+emoji_map = {"Negative": "😠", "Neutral": "😐", "Positive": "😊"}
 
-# --- 🌟 UI SETUP ---
-st.set_page_config(page_title="Sentiment Analysis", page_icon="🛍️", layout="centered")
-
-st.markdown(
-    """
-    <div style='text-align: center;'>
-        <h1 style='color: #FF4B4B;'>🛍️ Sentiment Analysis on Customer Reviews</h1>
-        <p style='font-size: 18px;'>Using Naive Bayes and NLP to understand what your customers feel</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# Optional hero image or banner
-st.image("https://img.freepik.com/free-photo/fashionable-woman-shopping-bags_23-2147775305.jpg", use_column_width=True)
-
-# Text Input
-st.markdown("### ✍️ Enter a customer review:")
-user_input = st.text_area("Your Review", placeholder="e.g. Loved the fabric and fit, would definitely recommend!")
-
-# Prediction
-if st.button("🔍 Predict Sentiment"):
-    if user_input.strip() == "":
-        st.warning("⚠️ Please enter a review to analyze.")
+# --- PREDICTION BUTTON ---
+if st.button("🔍 Analyze Sentiment"):
+    if not user_input.strip():
+        st.warning("Oops! Please enter a review before analyzing.")
     else:
         transformed_input = vectorizer.transform([user_input])
         prediction = model.predict(transformed_input)[0]
         sentiment = label_map.get(prediction, "Unknown")
+        emoji = emoji_map.get(sentiment, "❓")
 
-        # Result display with emojis
-        st.markdown("---")
-        st.markdown(f"## 🎯 Predicted Sentiment: **:blue[{sentiment}]**")
+        st.markdown(f"""
+        ## 🎯 Sentiment Detected: **{sentiment}** {emoji}
+        """)
+        st.info("Note: This prediction is based on past customer reviews. Real-world interpretation may vary.")
 
-        if sentiment == "Positive":
-            st.success("Customers are loving it! 💖")
-        elif sentiment == "Negative":
-            st.error("Oops! Might be time for a product review 👀")
-        elif sentiment == "Neutral":
-            st.info("It's okay... not bad, not great 🤷‍♀️")
+# --- FOOTER ---
+st.markdown("""
+<hr style='border:1px solid #f0f0f0'>
+<small>Project by Zainab Shujat 💛 | Powered by Streamlit + Naive Bayes</small>
+""", unsafe_allow_html=True)
