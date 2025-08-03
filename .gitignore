@@ -206,3 +206,16 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+<<<<<<< HEAD
+=======
+*.csv
+data/
+
+
+# Ignore large datasets
+data/best_sellers_data2.csv
+
+data/Reviews.csv
+
+data/data_amazon.xlsx.csv.csv
+>>>>>>> 0711f80a42d6fd4cff76d912680f10b93c4292e4
