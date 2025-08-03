@@ -10,16 +10,6 @@ Build an end-to-end sentiment classification pipeline using NLP preprocessing te
 
 ---
 
-## 📁 Project Structure
-
-Sentiment_Analysis_Project/
-├── sentiment_analysis.ipynb
-├── requirements.txt
-├── README.md
-└── data/
-
----
-
 ## ⚙️ Technologies & Libraries Used
 
 - **Python** (3.x)
