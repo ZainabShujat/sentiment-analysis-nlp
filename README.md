@@ -1,6 +1,7 @@
 # 🧠 Sentiment Analysis of Customer Reviews using NLP & Naive Bayes
 
 This project analyzes customer review texts to determine whether the sentiment expressed is **positive or negative**, using **Natural Language Processing (NLP)** and a **Naive Bayes classifier**. It applies fundamental text preprocessing techniques and trains a model to classify sentiment accurately.
+---
 Live at : https://zainab-sentiment-analysis.streamlit.app/ 
 ---
 
