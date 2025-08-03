@@ -208,3 +208,11 @@ __marimo__/
 
 *.csv
 data/
+
+
+# Ignore large datasets
+data/best_sellers_data2.csv
+
+data/Reviews.csv
+
+data/data_amazon.xlsx.csv.csv
