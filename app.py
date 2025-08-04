@@ -7,7 +7,7 @@ import os
 st.set_page_config(
     page_title="Customer Sentiment Analyzer",
     page_icon="🛍️",
-    layout="centered",
+    layout="wide
 )
 
 # --- LOAD MODEL + VECTORIZER ---
