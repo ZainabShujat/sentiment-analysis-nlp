@@ -69,19 +69,19 @@ with tab2:
     
     with col1:
         if os.path.exists("assets/wordcloud_positive.png"):
-            st.image("assets/wordcloud_positive.png", caption="🌟 Positive Reviews", use_column_width=True)
+            st.image("assets/wordcloud_positive.png", caption="🌟 Positive Reviews", use_container_width=True)
         else:
             st.warning("Positive wordcloud image not found")
     
     with col2:
         if os.path.exists("assets/wordcloud_negative.png"):
-            st.image("assets/wordcloud_negative.png", caption="💢 Negative Reviews", use_column_width=True)
+            st.image("assets/wordcloud_negative.png", caption="💢 Negative Reviews", use_container_width=True)
         else:
             st.warning("Negative wordcloud image not found")
     
     with col3:
         if os.path.exists("assets/wordcloud_neutral.png"):
-            st.image("assets/wordcloud_neutral.png", caption="😐 Neutral Reviews", use_column_width=True)
+            st.image("assets/wordcloud_neutral.png", caption="😐 Neutral Reviews", use_container_width=True)
         else:
             st.warning("Neutral wordcloud image not found")
 
@@ -90,15 +90,12 @@ with tab2:
     st.markdown("This heatmap shows how well the model performed across each sentiment class.")
     
     if os.path.exists("assets/confusion_matrix.png"):
-        st.image("assets/confusion_matrix.png", use_column_width=True)
+        st.image("assets/confusion_matrix.png", use_container_width=True)
     else:
         st.warning("Confusion matrix image not found")
 
 # --- FOOTER ---
-st.markdown(
-    """
-    <hr style='border:1px solid #f0f0f0'>
-    <small> Project by Zainab Shujat 💛 | Powered by Streamlit + Naive Bayes </small>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown("""
+<hr style='border:1px solid #f0f0f0'>
+<small>Project by Zainab Shujat 💛 | Powered by Streamlit + Naive Bayes</small>
+""", unsafe_allow_html=True)
