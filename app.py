@@ -32,7 +32,6 @@ Welcome to the **Sentiment Analysis App**!
 This tool helps you understand how customers feel about a product based on their review.
 
 Enter any review below — it could be glowing, angry, or just *meh* — and we'll tell you what it sounds like.
-
 """)
 
 # --- TABS ---
@@ -66,31 +65,22 @@ with tab2:
     st.markdown("These WordClouds show the most frequent words in each sentiment category:")
 
     col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        if os.path.exists("assets/wordcloud_positive.png"):
-            st.image("assets/wordcloud_positive.png", caption="🌟 Positive Reviews", use_container_width=True)
-        else:
-            st.warning("Positive wordcloud image not found")
-    
-    with col2:
-        if os.path.exists("assets/wordcloud_negative.png"):
-            st.image("assets/wordcloud_negative.png", caption="💢 Negative Reviews", use_container_width=True)
-        else:
-            st.warning("Negative wordcloud image not found")
-    
-    with col3:
-        if os.path.exists("assets/wordcloud_neutral.png"):
-            st.image("assets/wordcloud_neutral.png", caption="😐 Neutral Reviews", use_container_width=True)
-        else:
-            st.warning("Neutral wordcloud image not found")
+
+    for col, sentiment, emoji in zip([col1, col2, col3], ["positive", "negative", "neutral"], ["🌟", "💢", "😐"]):
+        image_path = f"assets/wordcloud_{sentiment}.png"
+        with col:
+            if os.path.exists(image_path):
+                st.image(image_path, caption=f"{emoji} {sentiment.capitalize()} Reviews", use_container_width=True)
+            else:
+                st.warning(f"{sentiment.capitalize()} wordcloud image not found")
 
     st.markdown("---")
     st.subheader("🎯 Confusion Matrix Heatmap")
     st.markdown("This heatmap shows how well the model performed across each sentiment class.")
-    
-    if os.path.exists("assets/confusion_matrix.png"):
-        st.image("assets/confusion_matrix.png", use_container_width=True)
+
+    heatmap_path = "assets/confusion_matrix.png"
+    if os.path.exists(heatmap_path):
+        st.image(heatmap_path, use_container_width=True)
     else:
         st.warning("Confusion matrix image not found")
 
