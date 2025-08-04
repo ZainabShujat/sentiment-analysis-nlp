@@ -1,4 +1,4 @@
 [server]
 headless = true
-port = $PORT
 enableCORS = false
+# Remove the port line entirely - Streamlit Cloud handles this
