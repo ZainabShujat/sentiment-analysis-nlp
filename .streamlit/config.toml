@@ -1,4 +1,0 @@
-[server]
-headless = true
-enableCORS = false
-# Remove the port line entirely - Streamlit Cloud handles this
